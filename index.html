@@ -20,7 +20,6 @@
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
 
-        <!-- ✅ UPDATED SIGN IN BUTTON -->
         <button class="signin-btn" onclick="googleLogin()">Sign In</button>
     </nav>
 </header>
@@ -91,10 +90,11 @@
     <div class="content">
         <h1>📞 Contact Us</h1>
 
-        <form class="contact-form">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Message" rows="4"></textarea>
+        <!-- ✅ UPDATED FORM -->
+        <form class="contact-form" onsubmit="sendMessage(event)">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" placeholder="Message" rows="4"></textarea>
             <button type="submit">Send Message</button>
         </form>
     </div>
@@ -105,12 +105,16 @@
     <p>© 2026 Keyboard Crackers | EcoAI Project</p>
 </footer>
 
-<!-- ✅ FIREBASE GOOGLE LOGIN SCRIPT (ADD AT BOTTOM) -->
+<!-- ✅ FIREBASE SCRIPT -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-analytics.js";
   import { getAuth, GoogleAuthProvider, signInWithPopup } 
   from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+
+  // 🔥 NEW: Firestore import
+  import { getFirestore, collection, addDoc } 
+  from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDGTx2xx9QA0TjsyNy7XlA9d3bs985kj80",
@@ -128,23 +132,47 @@
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
 
-  // ✅ Make function global
+  // 🔥 Firestore init
+  const db = getFirestore(app);
+
+  // ✅ GOOGLE LOGIN
   window.googleLogin = function() {
     signInWithPopup(auth, provider)
       .then((result) => {
         const user = result.user;
-
         alert("Welcome " + user.displayName);
-
-        console.log(user);
-
-        // 👉 Redirect after login
         window.location.href = "upload.html";
       })
       .catch((error) => {
         console.error(error);
-        alert("Login Failed");
+        alert(error.message);
       });
+  };
+
+  // ✅ CONTACT FORM FUNCTION
+  window.sendMessage = async function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+
+    try {
+      await addDoc(collection(db, "messages"), {
+        name: name,
+        email: email,
+        message: message,
+        time: new Date()
+      });
+
+      alert("Message sent successfully ✅");
+
+      document.querySelector(".contact-form").reset();
+
+    } catch (error) {
+      console.error(error);
+      alert("Failed to send message ❌");
+    }
   };
 </script>
 
