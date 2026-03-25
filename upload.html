@@ -52,16 +52,10 @@
 
   <br><br>
 
-  <button class="primary-btn detect-btn">
+  <button class="primary-btn detect-btn" onclick="detectWaste()">
     🔍 Detect Waste
   </button>
-<div id="resultBox" class="result-box" style="display:none;">
-  <h3>Result</h3>
-  <p><strong>Type:</strong> Plastic</p>
-  <p><strong>Confidence:</strong> 82%</p>
-  <p><strong>Suggestion:</strong> Recycle this ♻️</p>
-  <p><strong>Points Earned:</strong> +10</p>
-</div>
+
 </div> 
     </div>
 </section>
@@ -70,6 +64,7 @@
 <footer class="footer">
     <p>© 2026 Keyboard Crackers | EcoAI</p>
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
 
 
 <script src="script.js"></script>
