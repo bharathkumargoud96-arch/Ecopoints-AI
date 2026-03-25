@@ -19,7 +19,9 @@
         <a href="#features">Features</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
-        <button class="signin-btn">Sign In</button>
+
+        <!-- ✅ UPDATED SIGN IN BUTTON -->
+        <button class="signin-btn" onclick="googleLogin()">Sign In</button>
     </nav>
 </header>
 
@@ -28,16 +30,15 @@
     <div class="overlay"></div>
     <div class="content">
         <h1>Scan. Sort. Save the Planet 🌱</h1>
-
         <p>AI-powered waste detection with smart eco suggestions</p>
 
         <button class="primary-btn" onclick="location.href='upload.html'">
             Scan Waste Now 🚀
         </button>
 
-    <div class="stats">
-  🌱 120+ Items Scanned | ♻️ Smart Sorting | 🏆 Earn GreenPoints
-    </div>
+        <div class="stats">
+            🌱 120+ Items Scanned | ♻️ Smart Sorting | 🏆 Earn GreenPoints
+        </div>
     </div>
 </section>
 
@@ -48,7 +49,6 @@
         <h1>🚀 Features</h1>
 
         <div class="features-grid">
-
             <div class="feature-card">
                 <i class="fas fa-robot"></i>
                 <h3>AI Detection</h3>
@@ -66,7 +66,6 @@
                 <h3>Rewards</h3>
                 <p>Earn eco points</p>
             </div>
-
         </div>
     </div>
 </section>
@@ -105,6 +104,49 @@
 <footer class="footer">
     <p>© 2026 Keyboard Crackers | EcoAI Project</p>
 </footer>
+
+<!-- ✅ FIREBASE GOOGLE LOGIN SCRIPT (ADD AT BOTTOM) -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-analytics.js";
+  import { getAuth, GoogleAuthProvider, signInWithPopup } 
+  from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDGTx2xx9QA0TjsyNy7XlA9d3bs985kj80",
+    authDomain: "ecopoints-ai.firebaseapp.com",
+    projectId: "ecopoints-ai",
+    storageBucket: "ecopoints-ai.firebasestorage.app",
+    messagingSenderId: "1048907227891",
+    appId: "1:1048907227891:web:c6a1ad688f786d6d518d86",
+    measurementId: "G-QBGJS4P494"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  // ✅ Make function global
+  window.googleLogin = function() {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+
+        alert("Welcome " + user.displayName);
+
+        console.log(user);
+
+        // 👉 Redirect after login
+        window.location.href = "upload.html";
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("Login Failed");
+      });
+  };
+</script>
 
 </body>
 </html>
