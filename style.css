@@ -336,3 +336,7 @@ body {
 .upload-box{
     text-align: center;
 }
+.container {
+  width: 90%;
+  margin: auto;
+}
