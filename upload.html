@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Waste</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <h2>♻️ EcoAI</h2>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#">Features</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <button class="signin-btn">Sign In</button>
+    </nav>
+</header>
+
+<!-- FULL SCREEN SECTION -->
+<section class="section hero">
+    <div class="overlay"></div>
+
+    
+
+    <div class="upload-box">
+
+  <h1>Upload Waste Image</h1>
+
+  <div class="btn-group">
+    <button class="primary-btn" onclick="document.getElementById('fileInput').click()">
+      📁 Upload Image
+    </button>
+
+    <button class="primary-btn" onclick="startCamera()">
+      📷 Open Camera
+    </button>
+
+    <button class="primary-btn" onclick="captureImage()">
+      📸 Capture
+    </button>
+  </div>
+
+  <video id="camera" autoplay style="width:250px; display:none;"></video>
+
+  <input type="file" id="fileInput" hidden>
+
+  <img id="preview" style="width:220px; display:none; margin-top:20px; border-radius:12px;" />
+
+  <br><br>
+
+  <button class="primary-btn detect-btn">
+    🔍 Detect Waste
+  </button>
+<div id="resultBox" class="result-box" style="display:none;">
+  <h3>Result</h3>
+  <p><strong>Type:</strong> Plastic</p>
+  <p><strong>Confidence:</strong> 82%</p>
+  <p><strong>Suggestion:</strong> Recycle this ♻️</p>
+  <p><strong>Points Earned:</strong> +10</p>
+</div>
+</div> 
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>© 2026 Keyboard Crackers | EcoAI</p>
+</footer>
+
+
+<script src="script.js"></script>
+</body>
+</html>
