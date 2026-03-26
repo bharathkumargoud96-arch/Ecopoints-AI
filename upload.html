@@ -1,77 +1,83 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Upload Waste</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Upload Waste</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header class="header">
+  <!-- HEADER -->
+  <header class="header">
     <h2>♻️ EcoAI</h2>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="#">Features</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-        <button class="signin-btn">Sign In</button>
+      <a href="index.html">Home</a>
+      <a href="#">Features</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <button class="signin-btn">Sign In</button>
     </nav>
-</header>
+  </header>
 
-<!-- FULL SCREEN SECTION -->
-<section class="section hero">
+  <!-- FULL SCREEN SECTION -->
+  <section class="section hero">
     <div class="overlay"></div>
 
-    
+
 
     <div class="upload-box">
 
-  <h1>Upload Waste Image</h1>
+      <h1>Upload Waste Image</h1>
 
-  <div class="btn-group">
-    <button class="primary-btn" onclick="document.getElementById('fileInput').click()">
-      📁 Upload Image
-    </button>
+      <div class="btn-group">
+        <button class="primary-btn" onclick="document.getElementById('fileInput').click()">
+          📁 Upload Image
+        </button>
 
-    <button class="primary-btn" onclick="startCamera()">
-      📷 Open Camera
-    </button>
+        <button class="primary-btn" onclick="startCamera()">
+          📷 Open Camera
+        </button>
 
-    <button class="primary-btn" onclick="captureImage()">
-      📸 Capture
-    </button>
-  </div>
+        <button class="primary-btn" onclick="captureImage()">
+          📸 Capture
+        </button>
+      </div>
 
-  <video id="camera" autoplay style="width:250px; display:none;"></video>
+      <video id="camera" autoplay style="width:250px; display:none;"></video>
+      <canvas id="canvas" style="display:none;"></canvas>
 
-  <input type="file" id="fileInput" hidden>
+      <input type="file" id="fileInput" hidden>
 
-  <img id="preview" style="width:220px; display:none; margin-top:20px; border-radius:12px;" />
+      <img id="preview" style="width:220px; display:none; margin-top:20px; border-radius:12px;" />
 
-  <br><br>
+      <br><br>
 
-  <button class="primary-btn detect-btn">
-    🔍 Detect Waste
-  </button>
-<div id="resultBox" class="result-box" style="display:none;">
-  <h3>Result</h3>
-  <p><strong>Type:</strong> Plastic</p>
-  <p><strong>Confidence:</strong> 82%</p>
-  <p><strong>Suggestion:</strong> Recycle this ♻️</p>
-  <p><strong>Points Earned:</strong> +10</p>
-</div>
-</div> 
+      <button class="primary-btn detect-btn">
+        🔍 Detect Waste
+      </button>
+      <div id="resultBox" class="result-box" style="display:none;">
+        <h3>Result</h3>
+        <p><strong>Type:</strong> <span id="res-type">Plastic</span></p>
+        <p><strong>Confidence:</strong> <span id="res-confidence">82%</span></p>
+        <p><strong>Suggestion:</strong> <span id="res-suggestion">Recycle this ♻️</span></p>
+        <p><strong>Points Earned:</strong> <span id="res-points">+10</span></p>
+      </div>
     </div>
-</section>
+    </div>
+  </section>
 
-<!-- FOOTER -->
-<footer class="footer">
+  <!-- FOOTER -->
+  <footer class="footer">
     <p>© 2026 Keyboard Crackers | EcoAI</p>
-</footer>
+  </footer>
 
 
-<script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
