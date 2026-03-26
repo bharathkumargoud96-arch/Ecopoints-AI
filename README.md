@@ -38,3 +38,5 @@ Ecopoints-AI is a smart waste management system that helps in:
 
 ## 🎯 Goal
 To build intelligent systems that contribute to environmental sustainability and to advance our skills in AI development.
+## Project Link
+https://eco-ai-project.netlify.app/
